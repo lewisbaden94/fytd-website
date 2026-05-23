@@ -459,32 +459,18 @@ async function submitForm(inputId, successId, formId) {
     return;
   }
   try {
-    const res = await fetch('https://api.brevo.com/v3/contacts', {
+    const res = await fetch('/api/subscribe', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'api-key': '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'
-      },
-      body: JSON.stringify({
-        email: email,
-        listIds: [5],
-        updateEnabled: true
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email })
     });
-    if (res.ok || res.status === 201 || res.status === 204) {
+    const data = await res.json();
+    if (data.success) {
       const formEl = document.getElementById(formId);
       if (formEl) formEl.style.display = 'none';
       document.getElementById(successId).style.display = 'block';
     } else {
-      const err = await res.json();
-      if (err.code === 'duplicate_parameter') {
-        const formEl = document.getElementById(formId);
-        if (formEl) formEl.style.display = 'none';
-        document.getElementById(successId).style.display = 'block';
-      } else {
-        alert('Something went wrong — please try again.');
-      }
+      alert('Something went wrong — please try again.');
     }
   } catch(e) {
     alert('Something went wrong — please try again.');
