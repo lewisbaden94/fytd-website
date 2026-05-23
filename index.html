@@ -8,12 +8,14 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --gold: #C9A96E;
-    --gold-light: #E8D5A8;
-    --cream: #F7F2EA;
-    --dark: #0E0C09;
-    --mid: #1C1A14;
-    --muted: #7A7060;
+    --gold: #F0E0B0;
+    --gold-mid: #D4C090;
+    --gold-deep: #B8A070;
+    --cream: #FDFAF5;
+    --dark: #080808;
+    --mid: #111111;
+    --mid2: #161616;
+    --muted: #6A6050;
     --serif: 'Cormorant Garamond', Georgia, serif;
     --sans: 'Outfit', system-ui, sans-serif;
   }
@@ -23,150 +25,181 @@
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 18px 40px; display: flex; align-items: center; justify-content: space-between;
-    backdrop-filter: blur(20px); border-bottom: 1px solid rgba(201,169,110,0.1);
-    background: rgba(14,12,9,0.9);
+    padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(24px); border-bottom: 1px solid rgba(240,224,176,0.08);
+    background: rgba(8,8,8,0.92);
   }
-  .nav-logo { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--cream); letter-spacing: 0.05em; }
-  .nav-logo span { font-family: var(--sans); font-style: normal; font-size: 10px; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-left: 8px; }
-  .nav-cta { background: var(--gold); color: var(--dark); border: none; padding: 10px 24px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 2px; text-decoration: none; transition: background 0.2s; }
-  .nav-cta:hover { background: var(--gold-light); }
+  .nav-logo { font-family: var(--serif); font-style: italic; font-size: 28px; color: var(--gold); letter-spacing: 0.05em; }
+  .nav-logo span { font-family: var(--sans); font-style: normal; font-size: 10px; letter-spacing: 0.3em; color: rgba(240,224,176,0.4); text-transform: uppercase; margin-left: 10px; }
+  .nav-cta { background: #fff; color: #080808; border: none; padding: 10px 24px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .nav-cta:hover { background: var(--gold); }
 
   /* HERO */
-  .hero { min-height: 100vh; display: flex; align-items: center; padding: 120px 40px 80px; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 40%, #2A2010 0%, var(--dark) 65%); }
-  .hero-grid { position: absolute; inset: 0; opacity: 0.03; background-image: linear-gradient(rgba(201,169,110,1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,169,110,1) 1px, transparent 1px); background-size: 60px 60px; }
-  .hero-content { position: relative; z-index: 1; max-width: 620px; }
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 48px;
+    align-items: center;
+    padding: 140px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 60%, #1A1608 0%, var(--dark) 60%); }
+  .hero-grid { position: absolute; inset: 0; opacity: 0.02; background-image: linear-gradient(rgba(240,224,176,1) 1px, transparent 1px), linear-gradient(90deg, rgba(240,224,176,1) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; z-index: 1; }
   .eyebrow { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
   .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
-  .hero-title { font-family: var(--serif); font-size: clamp(54px, 9vw, 100px); font-weight: 300; font-style: italic; line-height: 1.0; color: var(--cream); margin-bottom: 4px; }
-  .hero-title-bold { font-family: var(--serif); font-size: clamp(54px, 9vw, 100px); font-weight: 600; font-style: normal; color: var(--gold); display: block; margin-bottom: 28px; }
-  .hero-sub { font-size: 17px; color: #C0B5A0; line-height: 1.8; margin-bottom: 40px; font-weight: 300; max-width: 480px; }
+  .hero-title { font-family: var(--serif); font-size: clamp(44px, 5vw, 72px); font-weight: 300; font-style: italic; line-height: 1.0; color: var(--cream); margin-bottom: 4px; }
+  .hero-title-bold { font-family: var(--serif); font-size: clamp(44px, 5vw, 72px); font-weight: 600; font-style: normal; color: var(--gold); display: block; margin-bottom: 28px; }
+  .hero-sub { font-size: 16px; color: rgba(253,250,245,0.6); line-height: 1.8; margin-bottom: 40px; font-weight: 300; max-width: 460px; }
+
+  /* HERO IMAGE — square, right column, aligned to form */
+  .hero-image-wrap {
+    position: relative; z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    border-radius: 3px;
+    border: 1px solid rgba(240,224,176,0.1);
+    filter: contrast(1.05) brightness(1.02);
+  }
+  .hero-image-label {
+    font-size: 10px; letter-spacing: 0.2em;
+    color: rgba(240,224,176,0.4); text-transform: uppercase;
+    text-align: center;
+  }
 
   /* FORM */
   .form-wrap { max-width: 460px; }
   .form-row { display: flex; }
-  .form-input { flex: 1; padding: 15px 18px; background: rgba(255,255,255,0.07); border: 1px solid rgba(201,169,110,0.3); border-right: none; color: var(--cream); font-size: 15px; font-family: var(--sans); outline: none; border-radius: 2px 0 0 2px; transition: border-color 0.2s; }
+  .form-input { flex: 1; padding: 15px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(240,224,176,0.2); border-right: none; color: var(--cream); font-size: 15px; font-family: var(--sans); outline: none; border-radius: 2px 0 0 2px; transition: border-color 0.2s; }
   .form-input::placeholder { color: var(--muted); }
-  .form-input:focus { border-color: rgba(201,169,110,0.7); }
-  .form-btn { padding: 15px 28px; background: var(--gold); border: none; color: var(--dark); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 0 2px 2px 0; transition: background 0.2s; white-space: nowrap; }
-  .form-btn:hover { background: var(--gold-light); }
+  .form-input:focus { border-color: rgba(240,224,176,0.5); }
+  .form-btn { padding: 15px 28px; background: #fff; border: none; color: #080808; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 0 2px 2px 0; transition: background 0.2s; white-space: nowrap; }
+  .form-btn:hover { background: var(--gold); }
   .form-note { font-size: 12px; color: var(--muted); margin-top: 10px; }
-  .success-box { display: none; background: rgba(201,169,110,0.1); border: 1px solid rgba(201,169,110,0.35); border-radius: 2px; padding: 16px 20px; color: var(--gold); font-family: var(--serif); font-style: italic; font-size: 16px; max-width: 460px; }
+  .success-box { display: none; background: rgba(240,224,176,0.06); border: 1px solid rgba(240,224,176,0.2); border-radius: 2px; padding: 20px 24px; max-width: 460px; }
 
   /* STATS */
-  .stats { background: var(--mid); border-top: 1px solid rgba(201,169,110,0.1); border-bottom: 1px solid rgba(201,169,110,0.1); padding: 36px 40px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
+  .stats { background: var(--mid); border-top: 1px solid rgba(240,224,176,0.06); border-bottom: 1px solid rgba(240,224,176,0.06); padding: 36px 48px; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 16px; }
   .stat { text-align: center; padding: 8px 20px; }
-  .stat-num { font-family: var(--serif); font-size: 42px; font-style: italic; color: var(--gold); }
+  .stat-num { font-family: var(--serif); font-size: 40px; font-style: italic; color: var(--gold); }
   .stat-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
 
   /* SECTIONS */
-  .section { padding: 90px 40px; max-width: 1080px; margin: 0 auto; }
+  .section { padding: 90px 48px; max-width: 1080px; margin: 0 auto; }
   .section-eye { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
   .section-title { font-family: var(--serif); font-size: clamp(34px, 4vw, 52px); font-weight: 300; font-style: italic; color: var(--cream); line-height: 1.2; margin-bottom: 48px; }
 
   /* STEPS */
   .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
-  .step { background: var(--mid); padding: 36px 32px; border: 1px solid rgba(201,169,110,0.08); position: relative; transition: border-color 0.3s; }
-  .step:hover { border-color: rgba(201,169,110,0.3); }
-  .step-num { font-family: var(--serif); font-size: 80px; font-style: italic; color: rgba(201,169,110,0.1); position: absolute; top: 16px; right: 20px; line-height: 1; }
+  .step { background: var(--mid); padding: 36px 32px; border: 1px solid rgba(240,224,176,0.06); position: relative; transition: border-color 0.3s; }
+  .step:hover { border-color: rgba(240,224,176,0.2); }
+  .step-num { font-family: var(--serif); font-size: 80px; font-style: italic; color: rgba(240,224,176,0.06); position: absolute; top: 16px; right: 20px; line-height: 1; }
   .step-icon { font-size: 30px; margin-bottom: 18px; }
   .step-title { font-family: var(--serif); font-size: 22px; font-style: italic; color: var(--cream); margin-bottom: 10px; }
-  .step-body { font-size: 14px; color: #B0A898; line-height: 1.8; }
+  .step-body { font-size: 14px; color: rgba(253,250,245,0.5); line-height: 1.8; }
 
   /* AVATAR FEATURE */
-  .avatar-section { background: var(--mid); padding: 90px 40px; }
-  .avatar-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .avatar-section { background: var(--mid); padding: 90px 48px; }
+  .avatar-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: center; }
   .avatar-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .avatar-card { background: rgba(201,169,110,0.06); border: 1px solid rgba(201,169,110,0.15); border-radius: 3px; padding: 24px; text-align: center; }
+  .avatar-card { background: rgba(240,224,176,0.04); border: 1px solid rgba(240,224,176,0.1); border-radius: 3px; padding: 24px; text-align: center; }
   .avatar-icon { font-size: 36px; margin-bottom: 12px; }
   .avatar-label { font-size: 12px; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; }
   .avatar-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
   .feature-list { list-style: none; margin-top: 24px; }
-  .feature-list li { font-size: 15px; color: #C0B5A0; padding: 10px 0; border-bottom: 1px solid rgba(201,169,110,0.08); display: flex; gap: 12px; line-height: 1.6; }
-  .feature-list li::before { content: '✦'; color: var(--gold); font-size: 12px; margin-top: 3px; flex-shrink: 0; }
+  .feature-list li { font-size: 15px; color: rgba(253,250,245,0.6); padding: 10px 0; border-bottom: 1px solid rgba(240,224,176,0.06); display: flex; gap: 12px; line-height: 1.6; }
+  .feature-list li::before { content: '✦'; color: var(--gold); font-size: 10px; margin-top: 5px; flex-shrink: 0; }
 
   /* PRICING */
-  .pricing-section { padding: 90px 40px; }
+  .pricing-section { padding: 90px 48px; }
   .pricing-inner { max-width: 1080px; margin: 0 auto; }
-  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
-  .pricing-card { background: var(--mid); border: 1px solid rgba(201,169,110,0.12); border-radius: 3px; padding: 32px 28px; position: relative; transition: all 0.3s; }
-  .pricing-card:hover { transform: translateY(-4px); border-color: rgba(201,169,110,0.3); }
-  .pricing-card.popular { border-color: var(--gold); background: rgba(201,169,110,0.07); }
-  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--gold); color: var(--dark); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 16px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(2,1fr); max-width: 720px; margin: 48px auto 0; gap: 16px; }
+  .pricing-card { background: var(--mid); border: 1px solid rgba(240,224,176,0.08); border-radius: 3px; padding: 32px 28px; position: relative; transition: all 0.3s; }
+  .pricing-card:hover { transform: translateY(-4px); border-color: rgba(240,224,176,0.2); }
+  .pricing-card.popular { border-color: rgba(240,224,176,0.3); background: rgba(240,224,176,0.04); }
+  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #fff; color: #080808; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 16px; border-radius: 20px; font-weight: 600; white-space: nowrap; }
   .plan-name { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
   .plan-price { font-family: var(--serif); font-size: 52px; font-style: italic; color: var(--cream); line-height: 1; }
   .plan-price span { font-size: 18px; color: var(--muted); font-style: normal; }
   .plan-tagline { font-size: 14px; color: var(--muted); margin: 8px 0 24px; }
   .plan-features { list-style: none; }
-  .plan-features li { font-size: 13px; color: #B0A898; padding: 8px 0; border-bottom: 1px solid rgba(201,169,110,0.07); display: flex; gap: 10px; }
+  .plan-features li { font-size: 13px; color: rgba(253,250,245,0.6); padding: 8px 0; border-bottom: 1px solid rgba(240,224,176,0.05); display: flex; gap: 10px; }
   .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 600; flex-shrink: 0; }
-  .plan-features li.no::before { content: '✗'; color: #5a4040; }
-  .plan-features li.no { color: #5a5048; }
-  .plan-btn { display: block; width: 100%; margin-top: 24px; padding: 13px; text-align: center; border: 1px solid var(--gold); color: var(--gold); background: transparent; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
-  .plan-btn:hover, .plan-btn.primary { background: var(--gold); color: var(--dark); }
+  .plan-features li.no::before { content: '✗'; color: #3a3028; }
+  .plan-features li.no { color: #3a3028; }
+  .plan-btn { display: block; width: 100%; margin-top: 24px; padding: 13px; text-align: center; border: 1px solid rgba(240,224,176,0.3); color: var(--gold); background: transparent; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer; font-family: var(--sans); font-weight: 600; border-radius: 2px; text-decoration: none; transition: all 0.2s; }
+  .plan-btn:hover { background: rgba(240,224,176,0.1); }
+  .plan-btn.primary { background: #fff; color: #080808; border-color: #fff; }
+  .plan-btn.primary:hover { background: var(--gold); border-color: var(--gold); }
+  .coffee-box { margin-top: 16px; padding: 12px 16px; background: rgba(240,224,176,0.05); border: 1px solid rgba(240,224,176,0.15); border-radius: 2px; font-size: 13px; color: var(--gold); text-align: center; font-style: italic; line-height: 1.6; }
 
   /* BRANDS */
-  .brands-section { background: var(--mid); padding: 70px 40px; }
+  .brands-section { background: var(--mid); padding: 70px 48px; }
   .brands-inner { max-width: 1080px; margin: 0 auto; }
   .brands-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-  .brand-tag { padding: 7px 18px; border: 1px solid rgba(201,169,110,0.18); color: var(--muted); font-size: 13px; letter-spacing: 0.08em; border-radius: 2px; transition: all 0.2s; }
+  .brand-tag { padding: 7px 18px; border: 1px solid rgba(240,224,176,0.12); color: var(--muted); font-size: 13px; letter-spacing: 0.08em; border-radius: 2px; transition: all 0.2s; }
   .brand-tag:hover { border-color: var(--gold); color: var(--gold); }
 
   /* COMPETITION */
-  .comp-section { padding: 90px 40px; }
+  .comp-section { padding: 90px 48px; }
   .comp-inner { max-width: 900px; margin: 0 auto; }
   .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .comp-table th { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(201,169,110,0.2); font-weight: 400; }
-  .comp-table td { padding: 13px 14px; border-bottom: 1px solid rgba(201,169,110,0.07); }
-  .comp-table tr.fytd-row td { background: rgba(201,169,110,0.07); }
+  .comp-table th { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(240,224,176,0.12); font-weight: 400; }
+  .comp-table td { padding: 13px 14px; border-bottom: 1px solid rgba(240,224,176,0.05); }
+  .comp-table tr.fytd-row td { background: rgba(240,224,176,0.04); }
   .comp-table tr.fytd-row td:first-child { color: var(--gold); font-family: var(--serif); font-style: italic; font-size: 18px; }
-  .yes { color: #7DC47D; } .no { color: #7A5050; } .gold { color: var(--gold); font-size: 16px; }
+  .yes { color: #7DC47D; } .no { color: #3a3028; } .gold { color: var(--gold); font-size: 16px; }
 
-  /* TESTIMONIALS */
-  .test-section { padding: 90px 40px; background: radial-gradient(ellipse at 50% 0%, #1E1A10 0%, var(--dark) 65%); }
-  .test-inner { max-width: 1080px; margin: 0 auto; }
-  .test-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 48px; }
-  .test-card { background: var(--mid); border: 1px solid rgba(201,169,110,0.1); border-radius: 3px; padding: 28px 24px; }
-  .test-quote { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--cream); line-height: 1.7; margin-bottom: 16px; }
-  .test-name { font-size: 11px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; }
+  /* VISION */
+  .vision-section { padding: 90px 48px; background: radial-gradient(ellipse at 50% 0%, #1A1608 0%, var(--dark) 65%); }
+  .vision-inner { max-width: 1080px; margin: 0 auto; text-align: center; }
 
   /* FINAL CTA */
-  .final-cta { padding: 110px 40px; text-align: center; background: linear-gradient(135deg, #1A1608 0%, var(--dark) 50%, #1A1608 100%); border-top: 1px solid rgba(201,169,110,0.1); }
+  .final-cta { padding: 110px 48px; text-align: center; background: linear-gradient(135deg, #1A1608 0%, var(--dark) 50%, #1A1608 100%); border-top: 1px solid rgba(240,224,176,0.06); }
   .final-form { display: flex; max-width: 440px; margin: 0 auto 12px; }
 
   /* FOOTER */
-  footer { padding: 28px 40px; border-top: 1px solid rgba(201,169,110,0.08); display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  footer { padding: 28px 48px; border-top: 1px solid rgba(240,224,176,0.06); display: flex; align-items: center; justify-content: space-between; font-size: 12px; color: var(--muted); }
 
   /* FLOATING */
-  .float-btn { position: fixed; bottom: 24px; right: 24px; z-index: 200; background: var(--gold); color: var(--dark); padding: 13px 20px; border-radius: 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; box-shadow: 0 8px 32px rgba(201,169,110,0.4); animation: glow 2.5s ease-in-out infinite; }
-  @keyframes glow { 0%,100% { box-shadow: 0 8px 32px rgba(201,169,110,0.4); } 50% { box-shadow: 0 8px 48px rgba(201,169,110,0.65); } }
+  .float-btn { position: fixed; bottom: 24px; right: 24px; z-index: 200; background: #fff; color: #080808; padding: 13px 20px; border-radius: 2px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; box-shadow: 0 8px 32px rgba(240,224,176,0.2); animation: glow 2.5s ease-in-out infinite; }
+  @keyframes glow { 0%,100% { box-shadow: 0 8px 32px rgba(240,224,176,0.2); } 50% { box-shadow: 0 8px 48px rgba(240,224,176,0.4); } }
   @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
   .fu1 { animation: fadeUp 0.6s ease both; }
   .fu2 { animation: fadeUp 0.6s 0.15s ease both; }
   .fu3 { animation: fadeUp 0.6s 0.3s ease both; }
 
-  /* RESPONSIVE */
-  @media(max-width:768px) {
-    nav { padding: 16px 20px; }
-    .hero { padding: 100px 20px 60px; }
-    .stats { padding: 24px 20px; }
-    .section { padding: 60px 20px; }
+  @media(max-width:900px) {
+    .hero { padding: 100px 24px 60px; }
+    .hero-image-wrap { display: none; }
+    nav { padding: 16px 24px; }
+    .stats { padding: 24px; }
+    .section { padding: 60px 24px; }
     .steps { grid-template-columns: 1fr; }
-    .avatar-section { padding: 60px 20px; }
+    .avatar-section { padding: 60px 24px; }
     .avatar-inner { grid-template-columns: 1fr; gap: 32px; }
-    .pricing-section { padding: 60px 20px; }
-    .pricing-grid { grid-template-columns: 1fr; }
-    .brands-section { padding: 48px 20px; }
-    .comp-section { padding: 60px 20px; overflow-x: auto; }
-    .test-section { padding: 60px 20px; }
-    .test-grid { grid-template-columns: 1fr; }
-    .final-cta { padding: 80px 20px; }
+    .pricing-section { padding: 60px 24px; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+    .brands-section { padding: 48px 24px; }
+    .comp-section { padding: 60px 24px; overflow-x: auto; }
+    .vision-section { padding: 60px 24px; }
+    .final-cta { padding: 80px 24px; }
     .final-form { flex-direction: column; }
-    .final-form .form-input { border-right: 1px solid rgba(201,169,110,0.3); border-bottom: none; border-radius: 2px 2px 0 0; }
+    .final-form .form-input { border-right: 1px solid rgba(240,224,176,0.2); border-bottom: none; border-radius: 2px 2px 0 0; }
     .final-form .form-btn { border-radius: 0 0 2px 2px; }
     .form-row { flex-direction: column; }
-    .form-input { border-right: 1px solid rgba(201,169,110,0.3); border-bottom: none; border-radius: 2px 2px 0 0; }
+    .form-input { border-right: 1px solid rgba(240,224,176,0.2); border-bottom: none; border-radius: 2px 2px 0 0; }
     .form-btn { border-radius: 0 0 2px 2px; }
     footer { flex-direction: column; gap: 8px; text-align: center; }
   }
@@ -192,9 +225,20 @@
         <input class="form-input" type="email" id="email1" placeholder="your@email.com" />
         <button class="form-btn" onclick="submitForm('email1','success1','form-main')">Join Waitlist →</button>
       </div>
-      <div class="success-box" id="success1">✦ You're on the list, and you'll be among the first to know when Fytd launches.</div>
+      <div class="success-box" id="success1">
+        <div style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold);margin-bottom:12px;">✦ You're on the list.</div>
+        <p style="font-size:14px;line-height:1.8;color:rgba(253,250,245,0.6);margin-bottom:12px;">Welcome to Fytd. You're one of the first people to believe in something we think is going to change how people get dressed forever.</p>
+        <p style="font-size:14px;line-height:1.8;color:rgba(253,250,245,0.6);margin-bottom:16px;">You'll get early access before anyone else when we launch. Watch this space.</p>
+        <p style="font-size:13px;color:var(--gold);font-style:italic;">— Lewis, Founder of Fytd</p>
+      </div>
       <p class="form-note">Free to join. No card required. Early access when we launch.</p>
     </div>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div class="hero-image-wrap">
+    <img src="models.png" alt="AI styled outfits" class="hero-image"/>
+    <div class="hero-image-label">✦ AI styled looks</div>
   </div>
 </section>
 
@@ -232,18 +276,18 @@
   </div>
 </div>
 
-<!-- 3D AVATAR FEATURE -->
+<!-- 3D AVATAR -->
 <div class="avatar-section">
   <div class="avatar-inner">
     <div>
       <div class="section-eye">Your Personal Style Model</div>
       <h2 class="section-title" style="margin-bottom:16px;">A 3D version of you.<br>Outfits that actually fit.</h2>
-      <p style="font-size:15px; color:#B0A898; line-height:1.8; margin-bottom:24px;">Most apps use generic mannequins. Fytd builds a 360° model from your own photos — so every outfit suggestion is styled for your actual shape, proportions and skin tone. Not a model's. Yours.</p>
+      <p style="font-size:15px;color:rgba(253,250,245,0.55);line-height:1.8;margin-bottom:24px;">Most apps use generic mannequins. Fytd builds a 360° model from your own photos — so every outfit suggestion is styled for your actual shape, proportions and skin tone.</p>
       <ul class="feature-list">
         <li>4-photo guided capture with on-screen silhouette to align against</li>
         <li>AI generates your personal 360° style model in seconds</li>
         <li>Completely private — invisible to all other users, always</li>
-        <li>Update your model anytime as your style or shape evolves</li>
+        <li>Update your model anytime as your style evolves</li>
         <li>See outfits spin 360° on your actual body shape (Pro)</li>
       </ul>
     </div>
@@ -263,7 +307,7 @@
         <div class="avatar-label">Back</div>
         <div class="avatar-sub">Photo 3 of 4</div>
       </div>
-      <div class="avatar-card" style="background:rgba(201,169,110,0.1); border-color:rgba(201,169,110,0.35);">
+      <div class="avatar-card" style="background:rgba(240,224,176,0.06);border-color:rgba(240,224,176,0.2);">
         <div class="avatar-icon">✦</div>
         <div class="avatar-label" style="font-size:13px;">Your 3D Model</div>
         <div class="avatar-sub">Ready to style</div>
@@ -273,12 +317,12 @@
 </div>
 
 <!-- PRICING -->
+<!-- PRICING -->
 <div class="pricing-section">
   <div class="pricing-inner">
     <div class="section-eye">Pricing</div>
     <h2 class="section-title">Start free. Go Pro when you're obsessed.</h2>
-    <div style="display:grid; grid-template-columns:repeat(2,1fr); max-width:720px; margin:48px auto 0; gap:16px;">
-
+    <div class="pricing-grid">
       <div class="pricing-card">
         <div class="plan-name">Free</div>
         <div class="plan-price">£0<span>/mo</span></div>
@@ -296,12 +340,11 @@
         </ul>
         <a href="#waitlist" class="plan-btn">Join Free →</a>
       </div>
-
       <div class="pricing-card popular">
         <div class="popular-badge">✦ Unlock Everything</div>
         <div class="plan-name">Pro</div>
         <div class="plan-price">£4.99<span>/mo</span></div>
-        <div class="plan-tagline" style="color:#C9A96E; font-style:italic; font-size:15px;">The price of a coffee. The power of a personal stylist.</div>
+        <div class="plan-tagline" style="color:var(--gold);font-style:italic;">The price of a coffee. The power of a personal stylist.</div>
         <ul class="plan-features">
           <li>Unlimited outfit ideas</li>
           <li>Full 360° outfit spin</li>
@@ -311,14 +354,11 @@
           <li>Photorealistic try-on</li>
           <li>Weekly curated style drops</li>
           <li>Priority new features</li>
-          <li>Cancel anytime, no commitment</li>
+          <li>Cancel anytime</li>
         </ul>
-        <div style="margin-top:20px; padding:14px 16px; background:rgba(201,169,110,0.08); border:1px solid rgba(201,169,110,0.25); border-radius:2px; font-size:13px; color:#C9A96E; text-align:center; font-style:italic; line-height:1.6;">
-          ☕ One coffee a month. A personal stylist for life.
-        </div>
+        <div class="coffee-box">☕ One coffee a month. A personal stylist for life.</div>
         <a href="#waitlist" class="plan-btn primary" style="margin-top:12px;">Get Early Access →</a>
       </div>
-
     </div>
   </div>
 </div>
@@ -335,7 +375,8 @@
       <div class="brand-tag">Reiss</div><div class="brand-tag">Whistles</div><div class="brand-tag">COS</div>
       <div class="brand-tag">Massimo Dutti</div><div class="brand-tag">Topshop</div><div class="brand-tag">River Island</div>
       <div class="brand-tag">Nobody's Child</div><div class="brand-tag">Boden</div><div class="brand-tag">Ted Baker</div>
-      <div class="brand-tag">AllSaints</div><div class="brand-tag">French Connection</div><div class="brand-tag">+ more added weekly</div>
+      <div class="brand-tag">AllSaints</div><div class="brand-tag">French Connection</div><div class="brand-tag">Gymshark</div>
+      <div class="brand-tag">Lululemon</div><div class="brand-tag">Nike</div><div class="brand-tag">+ more added weekly</div>
     </div>
   </div>
 </div>
@@ -347,45 +388,35 @@
     <h2 class="section-title">Everyone does part of it.<br>Fytd does all of it.</h2>
     <table class="comp-table">
       <thead>
-        <tr>
-          <th>App</th><th>Your Photo</th><th>3D Model</th><th>Your Brands</th><th>Full Outfits</th><th>Buy Direct</th><th>UK-First</th>
-        </tr>
+        <tr><th>App</th><th>Your Photo</th><th>3D Model</th><th>Your Brands</th><th>Full Outfits</th><th>Buy Direct</th><th>UK-First</th></tr>
       </thead>
       <tbody>
         <tr class="fytd-row">
           <td>Fytd ✦</td>
           <td class="gold">✦</td><td class="gold">✦</td><td class="gold">✦</td><td class="gold">✦</td><td class="gold">✦</td><td class="gold">✦</td>
         </tr>
-        <tr>
-          <td>Alta</td>
-          <td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td style="color:var(--muted)">Partial</td><td class="no">✗</td>
-        </tr>
-        <tr>
-          <td>Pinterest</td>
-          <td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td>
-        </tr>
-        <tr>
-          <td>Google Lens</td>
-          <td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td style="color:var(--muted)">1 item</td><td class="no">✗</td>
-        </tr>
-        <tr>
-          <td>Stitch Fix</td>
-          <td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td>
-        </tr>
+        <tr><td>Alta</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td><td style="color:var(--muted)">Partial</td><td class="no">✗</td></tr>
+        <tr><td>Pinterest</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+        <tr><td>Google Lens</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td style="color:var(--muted)">1 item</td><td class="no">✗</td></tr>
+        <tr><td>Stitch Fix</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
       </tbody>
     </table>
   </div>
 </div>
 
-<!-- TESTIMONIALS -->
-<div class="test-section">
-  <div class="test-inner">
-    <div class="section-eye">The Fytd Vision</div>
-    <h2 class="section-title" style="margin-bottom:16px;">Styling the world,<br>one person at a time.</h2>
-    <p style="font-size:17px; color:#C0B5A0; line-height:1.9; max-width:640px; margin: 0 auto 48px; text-align:center;">
-      Fytd exists because great style shouldn't be a privilege. We're building the world's most personal AI stylist — one that knows your body, understands your taste, and shops your favourite brands for you. No more buying things you never wear. Just outfits that are made for you, every single time.
-    </p>
-
+<!-- VISION -->
+<div class="vision-section">
+  <div class="vision-inner">
+    <div class="section-eye" style="justify-content:center;">The Fytd Vision</div>
+    <h2 class="section-title" style="margin-bottom:32px;">Styling the world,<br>one person at a time.</h2>
+    <div style="max-width:680px;margin:0 auto;">
+      <p style="font-size:18px;color:rgba(253,250,245,0.6);line-height:1.9;margin-bottom:24px;">Fytd exists because great style shouldn't be a privilege. We're building the world's most personal AI stylist — one that knows your body, understands your taste, and shops your favourite brands for you.</p>
+      <p style="font-size:18px;color:rgba(253,250,245,0.6);line-height:1.9;margin-bottom:48px;">No more buying things you never wear. Just outfits that are made for you, every single time.</p>
+      <div style="padding:32px 40px;background:rgba(240,224,176,0.04);border:1px solid rgba(240,224,176,0.15);border-radius:3px;">
+        <p style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--cream);line-height:1.7;margin:0;">"AI is in its infancy. It's getting better every single day. Fytd is built for where this technology is going — and by the time it gets there, we'll already be there waiting."</p>
+        <p style="font-size:12px;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-top:20px;">Lewis Baden · Founder, Fytd</p>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -394,16 +425,20 @@
   <div class="eyebrow" style="justify-content:center;margin-bottom:20px;">Be first. Get early access.</div>
   <h2 style="font-family:var(--serif);font-size:clamp(42px,6vw,72px);font-weight:300;font-style:italic;color:var(--cream);margin-bottom:4px;">Your wardrobe.</h2>
   <div style="font-family:var(--serif);font-size:clamp(42px,6vw,72px);font-weight:600;color:var(--gold);margin-bottom:36px;">Reimagined.</div>
-  <div class="final-form">
+  <div class="final-form" id="final-form-wrap">
     <input class="form-input" type="email" id="email2" placeholder="your@email.com" style="border-radius:2px 0 0 2px;border-right:none;"/>
     <button class="form-btn" style="border-radius:0 2px 2px 0;" onclick="submitForm('email2','success2','final-form-wrap')">Join the Waitlist →</button>
   </div>
-  <div class="success-box" id="success2" style="margin:0 auto 12px;">✦ You're on the list! We'll be in touch when Fytd launches.</div>
+  <div class="success-box" id="success2" style="margin:0 auto 12px;text-align:center;max-width:460px;">
+    <div style="font-family:var(--serif);font-style:italic;font-size:20px;color:var(--gold);margin-bottom:12px;">✦ You're on the list.</div>
+    <p style="font-size:14px;line-height:1.8;color:rgba(253,250,245,0.6);margin-bottom:12px;">Welcome to Fytd. You're one of the first people to believe in something we think is going to change how people get dressed forever.</p>
+    <p style="font-size:13px;color:var(--gold);font-style:italic;">— Lewis, Founder of Fytd</p>
+  </div>
   <p style="font-size:12px;color:var(--muted);margin-top:10px;">Free to join. No card required. Launching in the UK first.</p>
 </div>
 
 <footer>
-  <div style="font-family:var(--serif);font-style:italic;font-size:22px;">Fytd</div>
+  <div style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold);">Fytd</div>
   <div>© 2026 Fytd. All rights reserved.</div>
   <div style="display:flex;gap:20px;">
     <a href="#" style="color:var(--muted);text-decoration:none;">Privacy</a>
@@ -414,42 +449,39 @@
 <a href="#waitlist" class="float-btn">Join Waitlist ✦</a>
 
 <script>
-  async function submitForm(inputId, successId, formId) {
-    const email = document.getElementById(inputId).value;
-    if (!email || !email.includes('@')) {
-      document.getElementById(inputId).style.borderColor = '#C07070';
-      return;
-    }
-    try {
-      const res = await fetch('https://formspree.io/f/mykvjzyb', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({ email: email, source: 'fytd-waitlist' })
-      });
-      if (res.ok) {
-        const formEl = document.getElementById(formId);
-        if (formEl) formEl.style.display = 'none';
-        document.getElementById(successId).style.display = 'block';
-      }
-    } catch(e) {
-      alert('Something went wrong — please try again.');
-    }
+async function submitForm(inputId, successId, formId) {
+  const email = document.getElementById(inputId).value;
+  if (!email || !email.includes('@')) {
+    document.getElementById(inputId).style.borderColor = '#C07070';
+    return;
   }
-
-  document.getElementById('email1').addEventListener('keydown', e => { if(e.key==='Enter') submitForm('email1','success1','form-main'); });
-  document.getElementById('email2').addEventListener('keydown', e => { if(e.key==='Enter') submitForm('email2','success2','final-form-wrap'); });
-
-  // Scroll animations
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
+  try {
+    const res = await fetch('https://formspree.io/f/mykvjzyb', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: email, source: 'fytd-waitlist' })
     });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.step,.test-card,.pricing-card,.avatar-card').forEach(el => {
-    el.style.opacity='0'; el.style.transform='translateY(16px)';
-    el.style.transition='opacity 0.6s ease, transform 0.6s ease';
-    obs.observe(el);
+    if (res.ok) {
+      const formEl = document.getElementById(formId);
+      if (formEl) formEl.style.display = 'none';
+      document.getElementById(successId).style.display = 'block';
+    }
+  } catch(e) {
+    alert('Something went wrong — please try again.');
+  }
+}
+document.getElementById('email1').addEventListener('keydown', e => { if(e.key==='Enter') submitForm('email1','success1','form-main'); });
+document.getElementById('email2').addEventListener('keydown', e => { if(e.key==='Enter') submitForm('email2','success2','final-form-wrap'); });
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; }
   });
+}, { threshold: 0.1 });
+document.querySelectorAll('.step,.pricing-card,.avatar-card,.stat').forEach(el => {
+  el.style.opacity='0'; el.style.transform='translateY(16px)';
+  el.style.transition='opacity 0.6s ease, transform 0.6s ease';
+  obs.observe(el);
+});
 </script>
 </body>
 </html>
